@@ -20,15 +20,14 @@ public class Task {
 
     @Scheduled(cron = "0/5 * * * * ?")
     @Async
-    public void websocketMsgTask() {
+    public void scheduledTask() {
 
         sleep(1000);
-        System.out.println("***********");
+        System.out.println("*****scheduledTask******");
     }
 
 
     public static void main(String[] args) {
-        HavenProject wh = new HavenProject();
         Map<String, String> map = HavenProject.readSetFile();
 
         String path = map.get("path");

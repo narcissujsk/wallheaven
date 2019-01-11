@@ -64,7 +64,7 @@ public class HavenProject {
             inputStream.close();
         }
 
-        System.out.println("info:" + url + " download success");
+        System.out.println(Thread.currentThread()+" info:" + url + " download success");
 
     }
 

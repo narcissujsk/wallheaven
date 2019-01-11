@@ -10,6 +10,7 @@ public class WallheavenApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(WallheavenApplication.class, args);
+
     }
 
 }
