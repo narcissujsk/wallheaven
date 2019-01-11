@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(value = {"config", "config"})
+@ComponentScan(value = {"config", "execute"})
 public class WallheavenApplication {
 
     public static void main(String[] args) {
