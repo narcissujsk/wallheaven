@@ -42,7 +42,7 @@ public class WallheavenApplicationTests {
 
     @Test
     public void threadTest() throws InterruptedException {
-        for (int i = 0; i < 2000; i++) {
+        for (int i =33; i <733; i++) {
             asyncTaskService.executeAsyncTask(i);
         }
     }

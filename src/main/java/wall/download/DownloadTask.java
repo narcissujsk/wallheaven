@@ -45,14 +45,15 @@ public class DownloadTask {
         try {
             downLoadFromUrl(picture.getUrl(), picture.getName(), picture.getPath());
         } catch (IOException e) {
+            log.info(e.getMessage());
             try {
                 downLoadFromUrl(picture.getUrl().replace(".jpg", ".png"), picture.getName().replace(".jpg", ".png"), picture.getPath());
             } catch (IOException e1) {
-                e1.printStackTrace();
+                log.info(e1.getMessage());
             }
         }
         long endTime = System.currentTimeMillis();
-        long diffTime = endTime - beginTime;
+        double diffTime = (endTime - beginTime)/1000.0;
         log.info(Thread.currentThread().getName() + "executed download task, { cost = " + diffTime + "}");
         Boolean isSucess = false;
 
@@ -81,7 +82,7 @@ public class DownloadTask {
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         // 设置超时间为3秒
-        conn.setConnectTimeout(10 * 1000);
+        conn.setConnectTimeout(60 * 1000);
         // 防止屏蔽程序抓取而返回403错误
         conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 

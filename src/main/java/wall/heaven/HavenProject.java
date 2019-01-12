@@ -143,7 +143,7 @@ public class HavenProject {
                 try {
                     downLoadFromUrl(url, name, path);
                 } catch (IOException e1) {
-                    System.err.println(url);
+                   System.err.println(e1.getMessage());
                 }
             }
         }

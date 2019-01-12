@@ -10,7 +10,7 @@ import wall.heaven.HavenProject;
  * @author: jiangsk@inspur.com
  * @create: 2019-01-11 16:42
  **/
-//@Service
+@Service
 public class TaskService {
     //@Async
     public void executeAsyncTask(int i) throws InterruptedException {
@@ -18,7 +18,7 @@ public class TaskService {
         System.out.println("线程" + Thread.currentThread().getName() + " 执行异步任务：" + i);
     }
 
-    //@Async
+    @Async
     public void download(int i, String path) throws InterruptedException {
         System.out.println("线程" + Thread.currentThread().getName() + " 执行异步任务：" + i);
         HavenProject.DownNOI(i, path);
