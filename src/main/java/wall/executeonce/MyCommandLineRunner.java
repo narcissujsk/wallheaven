@@ -1,4 +1,4 @@
-package execute;
+package wall.executeonce;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * @author: jiangsk@inspur.com
  * @create: 2019-01-11 17:18
  **/
-@Component
+//@Component
 public class MyCommandLineRunner implements CommandLineRunner, Ordered {
     Logger logger=Logger.getLogger("MyCommandLineRunner");
     @Override

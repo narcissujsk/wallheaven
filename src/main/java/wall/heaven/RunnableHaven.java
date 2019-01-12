@@ -1,6 +1,4 @@
-package config;
-
-import config.HavenProject;
+package wall.heaven;
 
 public class RunnableHaven implements Runnable {
 	private int i;
@@ -12,7 +10,6 @@ public class RunnableHaven implements Runnable {
 
 	@Override
     public void run() {
-		HavenProject hp=new HavenProject();
         HavenProject.DownNOI(i, path);
 	}
 

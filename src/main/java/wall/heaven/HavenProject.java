@@ -1,4 +1,4 @@
-package config;
+package wall.heaven;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -10,11 +10,7 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class HavenProject {
 
@@ -64,7 +60,7 @@ public class HavenProject {
             inputStream.close();
         }
 
-        System.out.println(Thread.currentThread()+" info:" + url + " download success");
+        System.out.println(Thread.currentThread() + " info:" + url + " download success");
 
     }
 
@@ -84,6 +80,36 @@ public class HavenProject {
         }
         bos.close();
         return bos.toByteArray();
+    }
+
+    public static List<Picture> initList(int k, String path) {
+        List<Picture> list=new ArrayList<Picture>();
+        if (path.startsWith("/")) {
+            path = path + doFormat(k);
+        } else {
+            path = path + "/" + doFormat(k);
+        }
+        createDir(path);
+        for (int j = 0; j < 1000; j++) {
+            int i = j;
+            String str = doFormat(i);
+            String url = "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-" + k + str + ".jpg";
+            String name = "wallhaven-" + k + str + ".jpg";
+            String filePath = path + "/" + name;
+            String filePathOfPng = path + "/wallhaven-" + k + str + ".png";
+            File file = new File(filePath);
+            File file2 = new File(filePathOfPng);
+            if (file.exists() || file2.exists()) {
+                System.out.println(filePath + " exists");
+                continue;
+            }
+            Picture noi=new Picture();
+            noi.setName(name);
+            noi.setPath(path);
+            noi.setUrl(url);
+            list.add(noi);
+        }
+        return list;
     }
 
     public static void DownNOI(int k, String path) {

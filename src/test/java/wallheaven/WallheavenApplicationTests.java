@@ -1,8 +1,7 @@
 package wallheaven;
 
-import config.HavenProject;
-import config.RunnableHaven;
-import config.TaskService;
+import wall.heaven.HavenProject;
+import wall.config.TaskService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +22,21 @@ public class WallheavenApplicationTests {
         int thread = Integer.parseInt(map.get("thread").trim());
         int begin = Integer.parseInt(map.get("begin").trim());
         int end = Integer.parseInt(map.get("end").trim());
+
         for (int i = begin; i <= end; i++) {
             // DownNOI(i, path);
             try {
-                asyncTaskService.download(i,path);
+                asyncTaskService.download(i, path);
             } catch (InterruptedException e) {
+
 
             }
         }
+        while (true) {
+        }
 
     }
+
     @Autowired
     private TaskService asyncTaskService;
 

@@ -1,4 +1,4 @@
-package config;
+package wall.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -14,9 +14,9 @@ public class TaskConfiguration {
     @Bean(value = "taskExecutor")
     public Executor cpsTaskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(20);
-        executor.setMaxPoolSize(40);
-        executor.setQueueCapacity(200);
+        executor.setCorePoolSize(200);
+        executor.setMaxPoolSize(400);
+        executor.setQueueCapacity(2000);
         executor.setKeepAliveSeconds(60);
         executor.setThreadNamePrefix("cps");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
