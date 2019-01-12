@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 @EnableScheduling
 @EnableAsync
 public class DownloadTask {
-    Logger log=Logger.getLogger("DownloadTask");
+    Logger log = Logger.getLogger("DownloadTask");
 
     @Scheduled(cron = "0/1 * * * * ?")
     @Async
@@ -41,21 +41,22 @@ public class DownloadTask {
         if (picture == null) {
             return;
         }
-        log.info(Thread.currentThread().getName()+"begin download picture :" + GsonUtil.toJson(picture) +"");
+        log.info(Thread.currentThread().getName() + "begin download picture :" + GsonUtil.toJson(picture) + "");
         try {
-            HavenProject.downLoadFromUrl(picture.getUrl(),picture.getName(),picture.getPath());
+            downLoadFromUrl(picture.getUrl(), picture.getName(), picture.getPath());
         } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                downLoadFromUrl(picture.getUrl().replace(".jpg", ".png"), picture.getName().replace(".jpg", ".png"), picture.getPath());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         long endTime = System.currentTimeMillis();
         long diffTime = endTime - beginTime;
-        log.info(Thread.currentThread().getName()+"executed download task, { cost = " + diffTime + "}");
-        Boolean isSucess=false;
+        log.info(Thread.currentThread().getName() + "executed download task, { cost = " + diffTime + "}");
+        Boolean isSucess = false;
 
     }
-
-
-
 
 
     /**
@@ -76,11 +77,11 @@ public class DownloadTask {
      * @param savePath
      * @throws IOException
      */
-    public  void downLoadFromUrl(String urlStr, String fileName, String savePath) throws IOException {
+    public void downLoadFromUrl(String urlStr, String fileName, String savePath) throws IOException {
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         // 设置超时间为3秒
-        conn.setConnectTimeout(3 * 1000);
+        conn.setConnectTimeout(10 * 1000);
         // 防止屏蔽程序抓取而返回403错误
         conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 
@@ -104,7 +105,7 @@ public class DownloadTask {
             inputStream.close();
         }
 
-        System.out.println(Thread.currentThread()+" info:" + url + " download success");
+        System.out.println(Thread.currentThread() + " info:" + url + " download success");
 
     }
 
