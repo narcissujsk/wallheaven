@@ -89,7 +89,11 @@ public class HavenProject {
         } else {
             path = path + "/" + doFormat(k);
         }
-        createDir(path);
+        try {
+            createDir(path);
+        } catch (Exception e) {
+
+        }
         for (int j = 0; j < 1000; j++) {
             int i = j;
             String str = doFormat(i);
@@ -100,14 +104,16 @@ public class HavenProject {
             File file = new File(filePath);
             File file2 = new File(filePathOfPng);
             if (file.exists() || file2.exists()) {
-                System.out.println(filePath + " exists");
+                //System.out.println(filePath + " exists");
                 continue;
+            }else{
+                Picture noi=new Picture();
+                noi.setName(name);
+                noi.setPath(path);
+                noi.setUrl(url);
+                list.add(noi);
             }
-            Picture noi=new Picture();
-            noi.setName(name);
-            noi.setPath(path);
-            noi.setUrl(url);
-            list.add(noi);
+
         }
         return list;
     }

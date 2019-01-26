@@ -36,7 +36,7 @@ public class MyApplicationRunner implements ApplicationRunner {
         for (int i =begin; i < end; i++) {
             List<Picture> list = HavenProject.initList(i, path);
             lists.addAll(list);
-            logger.info(list.size()+"");
+            logger.info("no."+i+" num:  "+list.size()+"");
            /* for (int j = 0; j < list.size(); j++) {
                 logger.info(GsonUtil.toJson(list.get(i)));
             }*/

@@ -32,31 +32,30 @@ public class DownloadTask {
 
     private void executeTask() {
         long beginTime = System.currentTimeMillis();
-        ConcurrentLinkedQueue<Picture> lists = MyApplicationRunner.lists;
-        if (lists.isEmpty()) {
+        if (MyApplicationRunner.lists.isEmpty()) {
             return;
         }
         Picture picture;
-        picture = lists.poll();
+        picture = MyApplicationRunner.lists.poll();
         if (picture == null) {
             return;
         }
-        log.info(Thread.currentThread().getName() + "begin download picture :" + GsonUtil.toJson(picture) + "");
+        //log.info(Thread.currentThread().getName() + "begin download picture :" + GsonUtil.toJson(picture) + "");
         try {
             downLoadFromUrl(picture.getUrl(), picture.getName(), picture.getPath());
         } catch (IOException e) {
-            log.info(e.getMessage());
+            log.info("***********"+e.getMessage());
             try {
                 downLoadFromUrl(picture.getUrl().replace(".jpg", ".png"), picture.getName().replace(".jpg", ".png"), picture.getPath());
             } catch (IOException e1) {
-                log.info(e1.getMessage());
+                log.info("***********"+e1.getMessage());
             }
         }
         long endTime = System.currentTimeMillis();
         double diffTime = (endTime - beginTime)/1000.0;
-        log.info(Thread.currentThread().getName() + "executed download task, { cost = " + diffTime + "}");
+       // log.info(Thread.currentThread().getName() + " executed download : "+picture.getName()+" { cost = " + diffTime + "}");
         Boolean isSucess = false;
-
+        return;
     }
 
 
@@ -106,8 +105,8 @@ public class DownloadTask {
             inputStream.close();
         }
 
-        System.out.println(Thread.currentThread() + " info:" + url + " download success");
-
+        log.info(Thread.currentThread() + " info:" + fileName + " download success");
+        return;
     }
 
     /**

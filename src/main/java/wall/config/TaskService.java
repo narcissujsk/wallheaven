@@ -12,9 +12,8 @@ import wall.heaven.HavenProject;
  **/
 @Service
 public class TaskService {
-    //@Async
+    @Async
     public void executeAsyncTask(int i) throws InterruptedException {
-        Thread.sleep(1000);
         System.out.println("线程" + Thread.currentThread().getName() + " 执行异步任务：" + i);
     }
 
